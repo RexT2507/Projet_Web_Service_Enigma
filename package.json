@@ -1,0 +1,20 @@
+{
+  "name": "Projet_Web_Service_Enigma",
+  "version": "1.0.0",
+  "description": "Création d'un Client plus d'un Web Service permettant l'envoie et le crack du code Enigma.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RexT2507/Projet_Web_Service_Enigma.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RexT2507/Projet_Web_Service_Enigma/issues"
+  },
+  "homepage": "https://github.com/RexT2507/Projet_Web_Service_Enigma#readme"
+}
