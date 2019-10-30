@@ -1,3 +1,33 @@
 
+<nav class="navbar navbar-expand-lg navbar-dark">
 
-<router-outlet></router-outlet>
+  <a class="navbar-brand" href="#">Menu principal</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collaspe navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+
+      <!-- <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/projets']" routerLinkActive="router-link-active" >Projets</a>
+      </li> -->
+
+    </ul>
+
+    <ul class="navbar-nav">
+      <!-- <a class="nav-link" *ngIf="!authService.loggedIn()" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a>
+      <a class="nav-link" *ngIf="!authService.loggedIn()" [routerLink]="['/register']" routerLinkActive="router-link-active" >Créer un compte</a>
+      <a class="nav-link" style="cursor: pointer;" *ngIf="authService.loggedIn()" (click)="authService.logoutUser()">Logout</a> -->
+    </ul>
+
+  </div>
+
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
