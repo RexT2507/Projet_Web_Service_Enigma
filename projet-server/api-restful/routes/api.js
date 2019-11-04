@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-// const User = require('models/user');
+const User = require('../models/user');
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const url = 'mongodb://127.0.0.1:27017';
 const dbName = 'enigmadb';
@@ -26,6 +27,27 @@ database.once('open', _ => {
 database.on('error', err => {
     console.log('Erreur de connexion : ', err);
 });
+
+// EN ATTENTE D'IMPLEMENTATION (VOIR SI REELLEMENT PERTINANTE)
+// function verifyToken(req, res, next) 
+// {
+//     if (!req.headers.authorization)
+//     {
+//         return res.status(401).send('Demande non autorisée');
+//     }
+//     let token = req.headers.authorization.split(' ')[1];
+//     if (token === 'null')
+//     {
+//         return res.status(401).send('Demande non autorisée');
+//     }
+//     let playload = jwt.verify(token, 'secretKey');
+//     if (!playload)
+//     {
+//         return res.status(401).send('Demande non autorisée');
+//     }
+//     req.userId = playload.subject
+//     next()
+// }
 
 router.get('/', (req, res) => {
     res.send(`
