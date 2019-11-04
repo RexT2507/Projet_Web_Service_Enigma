@@ -100,32 +100,30 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => 
 {
-    let database = req.body
+    User.findOne({ email: req.body.email }, function (err, user) {
 
-    User.findOne({email: database.email}, (err, user) => {
-
-      if (err) 
-      {
-        console.log(err);    
-      } 
-      else 
-      {
-        if (!user) 
+        if (err)
         {
-          res.status(401).send('Email invalide');
-        } 
-        else if (!bcrypt.compare(user.password, database.password)) 
-        {
-          res.status(401).send('Mot de passe invalide');
-        } 
-        else 
-        {
-            let playload = { subject : user._id };
-            let token = jwt.sign(playload, 'secretKey');
-            res.status(200).send({token});
+            return res.status(500).send('Error on the server.');
         }
-      }
 
+        if (!user)
+        {
+            return res.status(404).send('Email invalide');
+        }
+        
+        const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+
+        if (!passwordIsValid)
+        {
+            return res.status(401).send('Mot de passe invalide');
+        }
+        
+        const token = jwt.sign({ id: user._id }, 'secretKey', {
+          expiresIn: 86400 // expires in 24 hours
+        });
+        
+        res.status(200).send({ auth: true, token: token });
     });
 
 }); // Fin de la méthode login
