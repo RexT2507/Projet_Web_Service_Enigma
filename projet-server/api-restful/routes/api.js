@@ -4,6 +4,7 @@ const router = express.Router();
 // const User = require('models/user');
 
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const url = 'mongodb://127.0.0.1:27017';
 const dbName = 'enigmadb';
@@ -39,5 +40,40 @@ router.get('/', (req, res) => {
     </div>
     `);
 });
+
+router.post('/register', (req, res) => {
+
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+        if (err) 
+        {
+            return res.status(500).json({
+                error: err
+            });
+        }
+        else
+        {
+            const user = new User({
+                _id: new mongoose.Types.ObjectId(),
+                email: req.body.email,
+                password: hash
+            });    
+            
+            user.save()
+                .then(result => {
+                    console.log(result);
+                    let playload = { subject: user._id };
+                    let token = jwt.sign(playload, 'secretKey');
+                    res.status(200).send({token});
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+        }
+    })
+
+});// Fin de la méthode register
 
 module.exports = router;
