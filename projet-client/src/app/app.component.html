@@ -22,7 +22,7 @@
 
     <ul class="navbar-nav">
 
-      <a class="nav-link" style="cursor: pointer;" *ngIf="authService.loggedIn()" (click)="authService.logoutUser()">Logout</a>
+      <a class="nav-link" style="cursor: pointer;" *ngIf="authService.loggedIn()" (click)="authService.logoutUser()">Déconnexion</a>
 
     </ul>
 
@@ -33,6 +33,8 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
+
+<br><br><br>
 
 
 <nav class="navbar fixed-bottom  navbar-expand-lg navbar-dark">
