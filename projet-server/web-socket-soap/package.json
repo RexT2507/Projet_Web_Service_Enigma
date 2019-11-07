@@ -1,0 +1,17 @@
+{
+  "name": "web-socket-soap",
+  "version": "1.0.0",
+  "description": "Web Service SOAP pour le projet Enigma",
+  "main": "soap.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "API",
+    "SOAP",
+    "Web",
+    "Service"
+  ],
+  "author": "Baptiste Marmier",
+  "license": "ISC"
+}
