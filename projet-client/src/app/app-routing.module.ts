@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ExempleComponent } from './components/exemple/exemple.component';
 
 import { AuthGuard } from './services/auth.guard';
+import { DecoderComponent } from './components/decoder/decoder.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,11 @@ const routes: Routes = [
     path: 'exemple',
     canActivate: [AuthGuard],
     component: ExempleComponent
+  },
+  {
+    path: 'decoder',
+    canActivate: [AuthGuard],
+    component: DecoderComponent
   }
 ];
 
