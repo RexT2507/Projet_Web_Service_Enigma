@@ -12,16 +12,18 @@
 
     <ul class="navbar-nav mr-auto">
 
-      <!-- <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/projets']" routerLinkActive="router-link-active" >Projets</a>
-      </li> -->
+      <li class="nav-item">
+
+        <a class="nav-link" *ngIf="authService.loggedIn()" [routerLink]="['/exemple']" routerLinkActive="router-link-active" >Exemple</a>
+
+      </li>
 
     </ul>
 
     <ul class="navbar-nav">
-      <!-- <a class="nav-link" *ngIf="!authService.loggedIn()" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a>
-      <a class="nav-link" *ngIf="!authService.loggedIn()" [routerLink]="['/register']" routerLinkActive="router-link-active" >Créer un compte</a>
-      <a class="nav-link" style="cursor: pointer;" *ngIf="authService.loggedIn()" (click)="authService.logoutUser()">Logout</a> -->
+
+      <a class="nav-link" style="cursor: pointer;" *ngIf="authService.loggedIn()" (click)="authService.logoutUser()">Logout</a>
+
     </ul>
 
   </div>
