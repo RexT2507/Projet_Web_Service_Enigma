@@ -28,6 +28,12 @@
 
     <ul class="navbar-nav">
 
+      <a class="nav-link" style="cursor: pointer;" *ngIf="authService.loggedIn()" ></a>
+
+    </ul>
+
+    <ul class="navbar-nav">
+
       <a class="nav-link" style="cursor: pointer;" *ngIf="authService.loggedIn()" (click)="authService.logoutUser()">Déconnexion</a>
 
     </ul>
