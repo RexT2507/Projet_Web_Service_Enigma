@@ -131,7 +131,12 @@ router.post('/login', (req, res) =>
 
 router.get('/user', verifyToken, (req, res) => {
 
+    console.log('*************************OK');
+    console.log(req.userId);
+    console.log(req);
     User.findById(req.userId, {password: 0}, (err, user) => {
+        console.log('*************************find user');
+        console.log(`*************************${user}`);
         if(err)
         {
             return res.status(500).send(`Nous rencontrons un problème dans la recherche de l'utilisateur`);
@@ -141,6 +146,7 @@ router.get('/user', verifyToken, (req, res) => {
             return res.status(404).send(`Nous ne trouvons pas l'utilisateur`);
         }
         res.status(200).send(user);
+        
     });
 });
 
