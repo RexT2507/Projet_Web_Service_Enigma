@@ -129,6 +129,19 @@ router.post('/login', (req, res) =>
 }); // Fin de la méthode login
 
 
+router.get('/user', verifyToken, (req, res) => {
 
+    User.findById(req.userId, {password: 0}, (err, user) => {
+        if(err)
+        {
+            return res.status(500).send(`Nous rencontrons un problème dans la recherche de l'utilisateur`);
+        }
+        if(!user)
+        {
+            return res.status(404).send(`Nous ne trouvons pas l'utilisateur`);
+        }
+        res.status(200).send(user);
+    });
+});
 
 module.exports = router;
