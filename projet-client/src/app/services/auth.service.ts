@@ -9,6 +9,7 @@ export class AuthService {
 
   private registerUrl = 'http://localhost:3000/api/register';
   private loginUrl = 'http://localhost:3000/api/login';
+  private userUrl = 'http://localhost:3000/api/user';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -31,6 +32,10 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  getUser() {
+    return this.http.get<any>(this.userUrl);
   }
 
 }
