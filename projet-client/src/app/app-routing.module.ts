@@ -6,6 +6,7 @@ import { ExempleComponent } from './components/exemple/exemple.component';
 
 import { AuthGuard } from './services/auth.guard';
 import { DecoderComponent } from './components/decoder/decoder.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'login',

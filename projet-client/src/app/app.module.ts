@@ -19,6 +19,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ExempleComponent } from './components/exemple/exemple.component';
 import { DecoderComponent } from './components/decoder/decoder.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 
 
@@ -28,7 +30,9 @@ import { DecoderComponent } from './components/decoder/decoder.component';
     LoginComponent,
     RegisterComponent,
     ExempleComponent,
-    DecoderComponent
+    DecoderComponent,
+    HomeComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
