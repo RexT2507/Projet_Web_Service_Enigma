@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,19 +11,23 @@ export class AppComponent implements OnInit {
   title = 'projet-client';
 
   User: any = [];
+  userEmail: string;
 
-  constructor(protected authService: AuthService) {}
+  constructor(protected authService: AuthService, private actRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.loadUser();
+    const token = localStorage.getItem('token');
+    const splitToken = token.split('.');
+    const tokenSlipted = splitToken[1];
+    const tokenDecodeB64 = atob(tokenSlipted);
+    console.log(`Token décodé en base64 : ${tokenDecodeB64}`);
+    const parseToken = JSON.parse(tokenDecodeB64);
+    console.log(parseToken);
+    const tokenSub = parseToken.sub;
+    const email = JSON.parse(tokenSub).email;
+    console.log(email);
+    this.userEmail = email;
   }
 
-  loadUser() {
-    return this.authService.getUser().subscribe(
-      data => {
-        console.log(data);
-        this.User = data;
-    },
-    error => console.log(error));
-  }
+
 }

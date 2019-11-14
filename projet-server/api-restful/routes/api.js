@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const fs =require('fs');
 
 const User = require('../models/user');
 
@@ -40,12 +41,12 @@ function verifyToken(req, res, next)
     {
         return res.status(401).send('Demande non autorisée');
     }
-    let playload = jwt.verify(token, 'secretKey');
-    if (!playload)
+    let payload = jwt.verify(token, 'secretKey');
+    if (!payload)
     {
         return res.status(401).send('Demande non autorisée');
     }
-    req.userId = playload.subject
+    req.userId = payload.subject
     next()
 }
 
@@ -83,8 +84,8 @@ router.post('/register', (req, res) => {
             user.save()
                 .then(result => {
                     console.log(result);
-                    let playload = { subject: user._id };
-                    let token = jwt.sign(playload, 'secretKey');
+                    let payload = { subject: user._id };
+                    let token = jwt.sign(payload, 'secretKey');
                     res.status(200).send({token});
                 })
                 .catch(err => {
@@ -118,33 +119,50 @@ router.post('/login', (req, res) =>
         {
             return res.status(401).send('Mot de passe invalide');
         }
-        
+        console.log(user);
         const token = jwt.sign({ id: user._id }, 'secretKey', {
-          expiresIn: 86400 // expires in 24 hours
+          expiresIn: 86400, // expires in 24 hours
+          subject: JSON.stringify(user)
+          
         });
         
-        res.status(200).send({ auth: true, token: token });
+        res.status(200).send({ auth: true, token: token});
     });
 
 }); // Fin de la méthode login
 
+// router.get('/user', verifyToken, (req, res) => {
 
-router.get('/user', verifyToken, (req, res) => {
+//     User.find(req.params.id, {password: 0}, (err, user) => {
+//     console.log(user);
+//         if(err)
+//         {
+//             return res.status(500).send(`Nous rencontrons un problème dans la recherche de l'utilisateur`);
+//         }
 
-    console.log('*************************OK');
-    console.log(req.userId);
-    console.log(req);
-    User.findById(req.userId, {password: 0}, (err, user) => {
-        console.log('*************************find user');
-        console.log(`*************************${user}`);
+//         if(!user)
+//         {
+//             return res.status(404).send(`Nous ne trouvons pas l'utilisateur`);
+//         }
+
+//         res.status(200).send(user);
+        
+//     });
+// });
+
+router.get('/user/:id', verifyToken, (req, res) => {
+
+    User.findById(req.params.id, {password: 0}, (err, user) => {
         if(err)
         {
             return res.status(500).send(`Nous rencontrons un problème dans la recherche de l'utilisateur`);
         }
+
         if(!user)
         {
             return res.status(404).send(`Nous ne trouvons pas l'utilisateur`);
         }
+
         res.status(200).send(user);
         
     });
