@@ -1,19 +1,53 @@
+/****LES MODULES NODEJS****/
+const fs = require('fs');
+
+
+const soap = require('soap');
 const express = require('express');
 
-const PORT = 8000;
-const server = express();
+// Fichier 
+const utils = require('./utils');
 
-server.get('/', function(req, res)
-{
-    res.send(`
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Serveur à l'écoute sur le port ${PORT}</a>
-    </nav>
-    `);
-});
+// Modules utilisés pour le chiffrage de César
+const random = require('random');
+const caesar = require('caesar-encrypt');
 
-server.listen(PORT, function()
+const app = express();
+
+const sourceDir = './mock'
+
+if(!fs.existsSync(sourceDir))
 {
-    console.log(`Serveur l'écoute sur le port: ${PORT}`);
-});
+    console.log(`Impossible de touver le dossier ${sourceDir}`);
+}
+
+const service = {
+
+    Caesar_Service: {
+        Caesar_Port: {
+            encryptCesar(args) {
+
+               const numberChiffrage = random.int(min = 1, max = 26);
+               const msgCaesar = caesar.encrypt()
+            }
+        }
+    }
+
+};
+
+
+
+
+const API;
+
+
+try {
+    switch(API) {
+        case 'IDECesar':
+
+    }
+}
+catch(err) {
+    utils.logError(err);
+    process.exit(1);
+}
