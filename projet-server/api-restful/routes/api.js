@@ -29,7 +29,6 @@ database.on('error', err => {
     console.log('Erreur de connexion : ', err);
 });
 
-// EN ATTENTE D'IMPLEMENTATION (VOIR SI REELLEMENT PERTINANTE)
 function verifyToken(req, res, next) 
 {
     if (!req.headers.authorization)
@@ -130,25 +129,6 @@ router.post('/login', (req, res) =>
     });
 
 }); // Fin de la méthode login
-
-// router.get('/user', verifyToken, (req, res) => {
-
-//     User.find(req.params.id, {password: 0}, (err, user) => {
-//     console.log(user);
-//         if(err)
-//         {
-//             return res.status(500).send(`Nous rencontrons un problème dans la recherche de l'utilisateur`);
-//         }
-
-//         if(!user)
-//         {
-//             return res.status(404).send(`Nous ne trouvons pas l'utilisateur`);
-//         }
-
-//         res.status(200).send(user);
-        
-//     });
-// });
 
 router.get('/user/:id', verifyToken, (req, res) => {
 
