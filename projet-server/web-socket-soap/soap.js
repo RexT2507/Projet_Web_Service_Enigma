@@ -12,6 +12,8 @@ const utils = require('./utils');
 // Modules utilisés pour le chiffrage de César
 const caesar = require('caesar-encrypt');
 const random = require('random');
+const io = require('socket.io').listen(3000);
+
 
 const app = express();
 
@@ -36,6 +38,47 @@ const service = {
                 
                 console.log(`Chaine encrypté : ${sourceFileContentEncrypt}`);
                 
+                function sendKey()
+                {
+                    const arrayKey = [];
+                
+                    for(let i = 1; arrayKey.length != 26; i++)
+                    {
+                        arrayKey.push(i);
+                    }
+                
+                    let socketCount = 0;
+                
+                    io.sockets.on('connection', function(socket) {
+                
+                        socketCount++;
+                        io.sockets.emit(`Nombre d'utilisateur : `, socketCount);
+                
+                        socket.on('disconnect', function() {
+                            socketCount--;
+                            io.sockets.emit(`Nombre d'utilisateur : `, socketCount);
+                        });
+                
+                        let key;
+                
+                        switch (socketCount) {
+                            case 1:
+                                key = arrayKey.slice(0, 26);
+                                break;
+                            case 2:
+                                key = arrayKey.slice(1, 13);
+                                key = arrayKey.slice(14, 26);
+                                break;
+                            case 3:
+                        }
+                
+                        return key;
+                    });
+                   
+                }
+                
+                setTimeout(sendKey, 1000);
+                
                 function decryptStringMessage()
                 {
                     console.log(`Démarrage du décryptage...`);
@@ -43,7 +86,7 @@ const service = {
                 
                 setTimeout(decryptStringMessage, 1000);
                 
-                function decryptString(res) 
+                function decryptString() 
                 {
                     let i = 1;
                 
@@ -63,11 +106,6 @@ const service = {
                         sourceFileContentDecrypt = caesar.decrypt(sourceFileContentEncrypt, i);
                         console.log(`La bonne clé est : ${i}`);
                         console.log(`Chaine décrypté : ${sourceFileContentDecrypt}`);
-
-                        return res.status(200).send(`
-                            La bonne clé est : ${i}
-                            Chaine décrypté : ${sourceFileContentDecrypt}
-                        `);
                     }
                 }
                 
