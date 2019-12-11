@@ -30,14 +30,17 @@ const service = {
         Caesar_Port: {
             encryptCesar(args) {
 
+                // On initialise la plage de clé pour encrypter de manière aléatoire
                 let randomKey = random.int(min = 1, max = 26);
 
                 let string = "La légende sanglante du comte Dracula est fortement liée au règne de Vlad Tepes.";
                 
+                // On encrypt la chaine de caractère
                 let sourceFileContentEncrypt = caesar.encrypt(string, randomKey);
                 
                 console.log(`Chaine encrypté : ${sourceFileContentEncrypt}`);
                 
+                // Méthode d'envoie de clé
                 function sendKey()
                 {
                     const arrayKey = [];
@@ -49,6 +52,7 @@ const service = {
                 
                     let socketCount = 0;
                 
+                    // On voit combien d'utilisateur se connecte
                     io.sockets.on('connection', function(socket) {
                 
                         socketCount++;
@@ -61,6 +65,7 @@ const service = {
                 
                         let key;
                 
+                        // On affecte les clés en fonction du nombre d'utilisateur
                         switch (socketCount) {
                             case 1:
                                 key = arrayKey.slice(0, 26);
@@ -86,12 +91,14 @@ const service = {
                 
                 setTimeout(decryptStringMessage, 1000);
                 
+                // Méthode de décryptage de la chaine de caractère
                 function decryptString() 
                 {
                     let i = 1;
                 
                     let sourceFileContentDecrypt;
                 
+                    // On teste la plage de clé de l'utilisateur
                     do {
                 
                         console.log(`La clé ${i} n'est pas la bonne`);

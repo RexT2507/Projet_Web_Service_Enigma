@@ -1,0 +1,6 @@
+site_name: Projet Web Service Enigma 
+
+nav:
+  - Accueil: index.md
+  - Web Service Authentification: rest.md
+  - Web Socket Caesar: soap.md
