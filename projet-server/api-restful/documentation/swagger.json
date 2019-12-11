@@ -1,0 +1,290 @@
+{
+    "swagger": "2.0",
+    "info":
+    {
+        "version": "1.0.0",
+        "title": "Projet_Web_Service_Enigma",
+        "description": "Création d'un Client plus d'un Web Service permettant l'envoie et le crack du code Enigma.",
+        "license": 
+        {
+            "name": "ISC",
+            "url": "https://opensource.org/licenses/ISC"
+        }
+    },
+    "servers": 
+    [
+        {
+            "url": "/",
+            "description": "Racine du serveur"
+        },
+        {
+            "url": "/api/",
+            "description": "Racine de l'API"
+        }
+    ],
+    "tags": 
+    [
+        {
+            "name": "API",
+            "description": "Les différentes routes de l'API"
+        }
+    ],
+    "consumes": 
+    [
+        "application/json"
+    ],
+    "produces":
+    [
+        "application/json"
+    ],
+    "paths": 
+    {
+        "/register": 
+        {
+            "post": 
+            {
+                "tags": 
+                [
+                    "API"
+                ],
+                "summary": "Créer un nouvel utilisateur",
+                "requestBody": 
+                {
+                    "description": "User Object",
+                    "required": true,
+                    "content": 
+                    {
+                        "application/json": 
+                        {
+                            "schema": 
+                            {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Ok",
+                        "schema": 
+                        {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": 
+                    {
+                        "description": "Error => Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/login": 
+        {
+
+            "post": 
+            {
+                "tags": 
+                [
+                    "API"
+                ],
+                "summary": "Loger un utilisateur",
+                "requestBody": 
+                {
+                    "description": "User Object",
+                    "required": true,
+                    "content": 
+                    {
+                        "application/json": 
+                        {
+                            "schema": 
+                            {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Ok",
+                        "schema":
+                        {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "401": 
+                    {
+                        "description": "Error => Email invalide ou Mot de passe invalide"
+                    }
+                }
+            }
+    
+        },
+        "/account":
+        {
+            "get": 
+            {
+                "tags": 
+                [
+                    "API"
+                ],
+                "summary": "Voir le compte de l'utilisateur",
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Ok",
+                        "schema": 
+                        {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": 
+                    {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/add":
+        {
+            "put": 
+            {
+                "tags": 
+                [
+                    "API"
+                ],
+                "summary": "Ajouter à la solde",
+                "requestBody": 
+                {
+                    "description": "User Object",
+                    "required": true,
+                    "content": 
+                    {
+                        "application/json": 
+                        {
+                            "schema": 
+                            {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Ok",
+                        "schema":
+                        {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "401": 
+                    {
+                        "description": "Error => Valeur saisie incorrecte"
+                    }
+                }
+            }
+        },
+        "/remove":
+        {
+            "put": 
+            {
+                "tags": 
+                [
+                    "API"
+                ],
+                "summary": "Effectuer un retrait sur la solde",
+                "requestBody": 
+                {
+                    "description": "User Object",
+                    "required": true,
+                    "content": 
+                    {
+                        "application/json": 
+                        {
+                            "schema": 
+                            {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    }
+                },
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "200": 
+                    {
+                        "description": "Ok",
+                        "schema":
+                        {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "401": 
+                    {
+                        "description": "Error => Valeur saisie incorrecte"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": 
+    {
+        "User": 
+        {
+            "type": "object",
+            "properties": 
+            {
+                "_id": 
+                {
+                    "type": "ObjectId"
+                },
+                "name": 
+                {
+                    "type": "string"
+                },
+                "surname":
+                {
+                    "type": "string"
+                },
+                "email": 
+                {
+                    "type": "string"
+                },
+                "password": 
+                {
+                    "type": "string"
+                },
+                "account":
+                {
+                    "type": "number"
+                },
+                "bank":
+                {
+                    "type": "string"
+                }
+                
+            }
+        }
+    }
+}

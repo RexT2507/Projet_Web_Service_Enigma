@@ -1,16 +1,25 @@
+// MODULE DE MISE EN PLACE DU SERVEUR
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// OPTIONS DU SERVEUR ET ROUTES
 const PORT = 3000;
 const api = require('./routes/api');
 const server = express();
+
+// MODULE POUR CREATION DE DOCUMENTATION
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./documentation/swagger.json');
 
 server.use(cors());
 
 server.use(bodyParser.json());
 
 server.use('/api', api);
+
+// ROUTE DE LA DOCUMENTATION
+server.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 server.get('/', function(req, res)
 {
