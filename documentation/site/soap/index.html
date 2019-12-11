@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Web Socket Caesar - Projet Web Service Enigma</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">Projet Web Service Enigma</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">Accueil</a>
+                            </li>
+                            <li >
+                                <a href="../rest/">Web Service Authentification</a>
+                            </li>
+                            <li class="active">
+                                <a href="./">Web Socket Caesar</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../rest/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a rel="prev" >
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#web-socket-caesar">Web Socket Caesar</a></li>
+        <li class="main "><a href="#les-modules-utilises-dans-le-projet">Les modules utilisés dans le projet</a></li>
+        <li class="main "><a href="#creation-du-serveur-soap">Création du serveur SOAP</a></li>
+        <li class="main "><a href="#mise-en-place-des-services-du-soap">Mise en place des services du SOAP</a></li>
+        <li class="main "><a href="#encodage-de-cesar">Encodage de Cesar</a></li>
+        <li class="main "><a href="#methode-denvoi-de-cle">Méthode d'envoi de clé</a></li>
+        <li class="main "><a href="#methode-de-decryptage-des-chaines-de-caractere">Méthode de décryptage des chaines de caractère</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="web-socket-caesar">Web Socket Caesar</h1>
+<p>Vous pouvez accéder au <a href="https://github.com/RexT2507/Projet_Web_Service_Enigma">code source</a> du projet.</p>
+<ul>
+<li>Pour la partie envoie de message chiffré ainsi que des clés pour les décoder, j'ai mit en place un Web Socket SOAP.</li>
+</ul>
+<h1 id="_1"></h1>
+<h2 id="les-modules-utilises-dans-le-projet">Les modules utilisés dans le projet</h2>
+<h1 id="_2"></h1>
+<p><img alt="Screenshot" src="../img/soap_module.PNG" /></p>
+<p>On va lister ces modules :</p>
+<ul>
+<li>
+<p><code>express</code>      - Le module Express fournit de petits outils robustes pour les serveurs HTTP, ce qui en fait une excellente solution pour les applications à page unique, les sites Web, les hybrides ou les API HTTP publiques.</p>
+</li>
+<li>
+<p><code>soap</code>         - Ce module vous permet de vous connecter aux services Web à l'aide de SOAP. Il fournit également un serveur qui vous permet d'exécuter vos propres services SOAP.z</p>
+</li>
+<li>
+<p><code>body-parser</code>   - Analysez les corps des requêtes entrantes dans un middleware avant vos gestionnaires, disponibles sous la propriété req.body.</p>
+</li>
+<li>
+<p><code>caesar-encrypt</code>- Le chiffrement César, également connu sous le nom de chiffrement par décalage, est l'une des formes de chiffrement les plus simples. Il s'agit d'un chiffre de substitution où chaque lettre du message d'origine (appelée le texte en clair) est remplacée par une lettre correspondant à un certain nombre de lettres vers le haut ou vers le bas dans l'alphabet</p>
+</li>
+<li>
+<p><code>random</code>        - Bienvenue dans le module le plus aléatoire sur npm</p>
+</li>
+<li>
+<p><code>socket.io</code>     - Socket.IO permet une communication bidirectionnelle en temps réel basée sur les événements.</p>
+</li>
+</ul>
+<h1 id="_3"></h1>
+<h2 id="creation-du-serveur-soap">Création du serveur SOAP</h2>
+<h1 id="_4"></h1>
+<p>Dans un premier temps on crée le serveur SOAP.</p>
+<p><img alt="Screenshot" src="../img/soap_client.PNG" /></p>
+<h1 id="_5"></h1>
+<h2 id="mise-en-place-des-services-du-soap">Mise en place des services du SOAP</h2>
+<h1 id="_6"></h1>
+<p>On crée des services afin de mettre en place les fonctions du SOAP</p>
+<p><img alt="Screenshot" src="../img/service.PNG" /></p>
+<h1 id="_7"></h1>
+<h2 id="encodage-de-cesar">Encodage de Cesar</h2>
+<h1 id="_8"></h1>
+<p>On initialise</p>
+<p><img alt="Screenshot" src="../img/init.PNG" /></p>
+<h1 id="_9"></h1>
+<h2 id="methode-denvoi-de-cle">Méthode d'envoi de clé</h2>
+<h1 id="_10"></h1>
+<p><img alt="Screenshot" src="../img/endKey.PNG" /></p>
+<h1 id="_11"></h1>
+<h2 id="methode-de-decryptage-des-chaines-de-caractere">Méthode de décryptage des chaines de caractère</h2>
+<h1 id="_12"></h1>
+<p><img alt="Screenshot" src="../img/decrypt.PNG" /></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

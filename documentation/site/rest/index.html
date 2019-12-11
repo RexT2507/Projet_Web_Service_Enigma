@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Web Service Authentification - Projet Web Service Enigma</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">Projet Web Service Enigma</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">Accueil</a>
+                            </li>
+                            <li class="active">
+                                <a href="./">Web Service Authentification</a>
+                            </li>
+                            <li >
+                                <a href="../soap/">Web Socket Caesar</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="..">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../soap/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#web-service-authentification">Web Service Authentification</a></li>
+        <li class="main "><a href="#les-modules-utilises-dans-le-projet">Les modules utilisés dans le projet</a></li>
+        <li class="main "><a href="#connexion-a-la-mongodb">Connexion à la MongoDB</a></li>
+        <li class="main "><a href="#fonction-de-verification-du-token">Fonction de vérification du Token</a></li>
+        <li class="main "><a href="#methode-de-creation-dun-nouvel-utilisateur">Méthode de création d'un nouvel utilisateur</a></li>
+        <li class="main "><a href="#methode-de-connexion-dun-utilisateur">Méthode de connexion d'un utilisateur</a></li>
+        <li class="main "><a href="#methode-dacces-au-profile-utilisateur">Méthode d'accès au profile utilisateur</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="web-service-authentification">Web Service Authentification</h1>
+<p>Vous pouvez accéder au <a href="https://github.com/RexT2507/Projet_Web_Service_Enigma">code source</a> du projet.</p>
+<ul>
+<li>Pour la partie authentification du projet j'ai décidé mettre en place une API Rest sous Express en JavaScript avec le FrameWork Node.JS</li>
+</ul>
+<h1 id="_1"></h1>
+<h2 id="les-modules-utilises-dans-le-projet">Les modules utilisés dans le projet</h2>
+<h1 id="_2"></h1>
+<p><img alt="Screenshot" src="../img/rest_module.PNG" /></p>
+<p>On va lister ces modules :</p>
+<ul>
+<li>
+<p><code>express</code>      - Le module Express fournit de petits outils robustes pour les serveurs HTTP, ce qui en fait une excellente solution pour les applications à page unique, les sites Web, les hybrides ou les API HTTP publiques.</p>
+</li>
+<li>
+<p><code>mongoose</code>     - Le module Mongoose fournit une solution simple basée sur un schéma pour modéliser les données de votre application. Il comprend la conversion de type intégrée, la validation, la création de requêtes, les crochets de logique métier et plus encore, prêts à l'emploi.</p>
+</li>
+<li>
+<p><code>bcrypt</code>       - Le module bcrypt facilite le hachage et la comparaison des mots de passe dans Node. Si vous venez d'un arrière-plan PHP, ceux-ci sont à peu près équivalents à password_hash () et password_verify ().</p>
+</li>
+<li>
+<p><code>jsonwebtoken</code> - Le module JSON Web Token (JWT) est une norme ouverte (RFC 7519) qui définit une manière compacte et autonome de transmettre en toute sécurité des informations entre les parties en tant qu'objet JSON.</p>
+</li>
+</ul>
+<h1 id="_3"></h1>
+<h2 id="connexion-a-la-mongodb">Connexion à la MongoDB</h2>
+<h1 id="_4"></h1>
+<p>Dans un premier temps je crée mon model User :</p>
+<p><img alt="Screenshot" src="../img/model_user.PNG" /></p>
+<p>Ensuite j'importe le fichier dans mon fichier contenant les routes de mon API.</p>
+<p><img alt="Screenshot" src="../img/model_user_import.PNG" /></p>
+<p>Je définis l'url et le nom de la base de données MongoDB.</p>
+<p><img alt="Screenshot" src="../img/mongo_url_db.PNG" /></p>
+<p>Je paramètre les options et j'effectue la connexion.</p>
+<p><img alt="Screenshot" src="../img/mongo_connexion_option.PNG" /></p>
+<p>Une fois la connexion effectué, j'ouvre la base de données, et s'il y a une erreur je l'affiche.</p>
+<p><img alt="Screenshot" src="../img/mongo_open_error.PNG" /></p>
+<h1 id="_5"></h1>
+<h2 id="fonction-de-verification-du-token">Fonction de vérification du Token</h2>
+<h1 id="_6"></h1>
+<p>Afin de vérifier le Token lors du login, j'ai mis en place une fonction de vérification.</p>
+<p><img alt="Screenshot" src="../img/verify_token.PNG" /></p>
+<h1 id="_7"></h1>
+<h2 id="methode-de-creation-dun-nouvel-utilisateur">Méthode de création d'un nouvel utilisateur</h2>
+<h1 id="_8"></h1>
+<p>Dans un premier temps nous encryptons le mot de passe, puis on récupère l'email de l'utilisateur, enfin on attribue un id et on crée le nouvel utilisateur dans lequel on signe l'id avec un token.</p>
+<p><img alt="Screenshot" src="../img/register.PNG" /></p>
+<h1 id="_9"></h1>
+<h2 id="methode-de-connexion-dun-utilisateur">Méthode de connexion d'un utilisateur</h2>
+<h1 id="_10"></h1>
+<p>On compare l'email afin de savoir si l'utilisateur fait parti de la base de données, on compare le mot de passe enfin si les deux étapes ont été effectués avec succès on attribue un token avec une date d'expiration et les informations de l'utilisateur.</p>
+<p><img alt="Screenshot" src="../img/login.PNG" /></p>
+<h1 id="_11"></h1>
+<h2 id="methode-dacces-au-profile-utilisateur">Méthode d'accès au profile utilisateur</h2>
+<h1 id="_12"></h1>
+<p>Il est possible d'accéder aux informations de l'utilisateur, cependant la route n'est accessible uniquement aux personnes qui ont un token valide.</p>
+<p><img alt="Screenshot" src="../img/user_profile.PNG" /></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
