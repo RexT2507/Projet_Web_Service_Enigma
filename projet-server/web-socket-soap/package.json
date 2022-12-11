@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "caesar-encrypt": "0.0.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "nodemon": "^1.19.4",
     "random": "^2.1.1",
     "soap": "^0.30.0",
